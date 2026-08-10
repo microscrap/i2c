@@ -1,8 +1,18 @@
 # microscrap/i2c — Linux I²C / SMBus bindings for ScrapyardIO
 
-PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension with global helpers, enums, and data objects. Every helper delegates to a facade class under `Microscrap\Bindings\I2C`.
+> **Docs (production):** [ScrapyardIO · microscrap/i2c 0.7.x](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.7.x/overview)
+
+[![Docs](https://img.shields.io/badge/docs-ScrapyardIO-0ea5e9?logo=readthedocs&logoColor=white)](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.7.x/overview)
+[![Packagist Version](https://img.shields.io/packagist/v/microscrap/i2c.svg?label=packagist)](https://packagist.org/packages/microscrap/i2c)
+[![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/i2c.svg)](https://packagist.org/packages/microscrap/i2c)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.7-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
+
+PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`) plus [`microscrap/posix`](https://github.com/microscrap/posix) with global helpers, enums, and data objects. Every helper delegates to a facade class under `Microscrap\Bindings\I2C`.
 
 This project provides PHP bindings to the Linux i2c-dev character device API, mirroring the public surface of the userspace [`i2c-tools`](https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/) / `<linux/i2c-dev.h>` family.
+
+This is the **bindings** package — not the native extension. Ecosystem docs: [`0.7.x`](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.7.x/overview).
 
 ## Highlights
 
@@ -16,10 +26,10 @@ This project provides PHP bindings to the Linux i2c-dev character device API, mi
 
 ## Requirements
 
-* PHP 8.3+
+* PHP `^8.4|^8.5|^8.6`
 * Linux kernel with `i2c-dev` (`modprobe i2c-dev`) and a populated `/dev/i2c-N` device
-* **ext-posi** ^0.4.0 — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
-* **microscrap/posix** ^0.4.0
+* **ext-posi** `^0.7.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
+* **microscrap/posix** `^0.7.0`
 
 ## Installation
 
@@ -37,16 +47,16 @@ i2cdetect -y 1
 ```
 
 ```bash
-composer require microscrap/i2c
+composer require microscrap/i2c:^0.7.0
 ```
 
-Composer autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php`, registering the global `i2c_*` functions.
+Composer also pulls **`microscrap/posix` `^0.7.0`**. Autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php`, registering the global `i2c_*` functions.
 
 ## Usage
 
 I²C transactions are driven through **global helper functions** (`i2c_open`, `i2c_read`, `i2c_write`, `i2c_smbus_*`, `i2c_rdwr`, etc.). All helpers delegate to the `Bus` facade and are only defined once (`function_exists` guard).
 
-Enums live under `Microscrap\Bindings\I2C\Enums`. The bus handle is `Microscrap\Bindings\I2C\DataObjects\I2CBus`.
+Enums live under `Microscrap\Bindings\I2C\Enums` — cases are **FULLY UPPERCASE**. The bus handle is `Microscrap\Bindings\I2C\DataObjects\I2CBus`.
 
 ---
 
@@ -58,7 +68,7 @@ Enums live under `Microscrap\Bindings\I2C\Enums`. The bus handle is `Microscrap\
 use Microscrap\Bindings\I2C\DataObjects\I2CBus;
 
 $bus = i2c_open('/dev/i2c-1', 0x38);
-if ($bus === null) {
+if (is_null($bus)) {
     exit("Failed to open bus or bind slave address\n");
 }
 
@@ -85,8 +95,6 @@ printf(
 
 i2c_close($bus);
 ```
-
-See `examples/aht20.php` for the full polling-loop version.
 
 ---
 
@@ -194,7 +202,7 @@ The `$addr` field reflects the address bound at `i2c_open` time and is used by `
 
 ## Enums
 
-All enums are `int`-backed with `SCREAMING_SNAKE_CASE` cases that map directly to kernel constants.
+All enums are `int`-backed with **FULLY UPPERCASE** cases that map directly to kernel constants.
 
 ### `I2COpCode` — ioctl request numbers (`<linux/i2c-dev.h>`)
 
