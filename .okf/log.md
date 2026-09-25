@@ -1,3 +1,6 @@
+## 2026-09-24
+* **Update**: relabeled 0.8.0 → 0.9.0 with `ext-posi` / `microscrap/posix` ^0.9.0. No code change.
+
 ## 2026-09-14
 * **Update**: relabeled 0.7.0 → 0.8.0 with `ext-posi` / `ext-ftdi` 0.8.0. No code change.
 

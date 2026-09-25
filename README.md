@@ -28,8 +28,8 @@ This is the **bindings** package — not the native extension. Ecosystem docs: [
 
 * PHP `^8.4|^8.5|^8.6`
 * Linux kernel with `i2c-dev` (`modprobe i2c-dev`) and a populated `/dev/i2c-N` device
-* **ext-posi** `^0.7.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
-* **microscrap/posix** `^0.7.0`
+* **ext-posi** `^0.9.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
+* **microscrap/posix** `^0.9.0`
 
 ## Installation
 
@@ -47,10 +47,10 @@ i2cdetect -y 1
 ```
 
 ```bash
-composer require microscrap/i2c:^0.7.0
+composer require microscrap/i2c:^0.9.0
 ```
 
-Composer also pulls **`microscrap/posix` `^0.7.0`**. Autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php`, registering the global `i2c_*` functions.
+Composer also pulls **`microscrap/posix` `^0.9.0`**. Autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php`, registering the global `i2c_*` functions.
 
 ## Usage
 
