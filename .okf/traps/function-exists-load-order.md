@@ -37,7 +37,7 @@ if (! function_exists('i2c_open')) {
 
 Under the guard, **the first definition wins**. A prior Composer autoload file, polyfill, or another package that registered the same global name keeps its implementation.[^readme][^helpers-smbus]
 
-Unlike `microscrap/posix` overlapping PHP’s built-in `posix` extension, `i2c_*` names are uncommon in stock PHP — collisions are more likely from another microscrap / project polyfill than from a core extension.
+`i2c_*` names are uncommon in stock PHP — collisions are more likely from another microscrap / project polyfill than from a core extension.
 
 # Mitigation
 

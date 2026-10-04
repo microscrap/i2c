@@ -1,9 +1,9 @@
 ---
 type: Architecture
 title: "Helpers → Bus → posix/posi"
-description: "Global i2c_* helpers call Bus; Bus uses posix_open/read/write/close, ioctl, and posi_mem_* for I2C_RDWR."
+description: "Global i2c_* helpers call Bus; Bus calls ext-posi posix_open/read/write/close, ioctl, and posi_mem_*; posi_mem_* only for I2C_RDWR."
 resource: src/Bus.php
-tags: [architecture, bindings, i2c, helpers, bus, posix, posi]
+tags: [architecture, bindings, i2c, helpers, bus, posi]
 generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T22:04:00Z" }
 status: draft
 sources:
@@ -49,7 +49,7 @@ Rules:[^agents][^readme][^bus]
 
 1. Helpers call `Microscrap\Bindings\I2C\Bus` only.
 2. `Bus` is the only layer that calls `posix_*`, `ioctl`, and `posi_mem_*` for this package’s I²C surface.
-3. Helpers never call posix / ext-posi directly.
+3. Helpers never call ext-posi functions directly.
 4. Do not invent a parallel PHP API or reimplement kernel i2c-dev ioctls outside `Bus`.
 
 # Autoload
@@ -61,13 +61,13 @@ Composer `autoload.files` registers:[^composer]
 
 Each function is wrapped in `if (! function_exists(...))` so a prior definition wins.[^helpers-bus][^helpers-smbus]
 
-# Helper groups (0.7 surface)
+# Helper groups
 
 | Group | Examples | Bus / lower path |
 |-------|----------|------------------|
-| Lifecycle / I/O | `i2c_open`, `i2c_close`, `i2c_read`, `i2c_write` | `posix_open` (`O_RDWR`) + `I2C_SLAVE`; then `posix_read` / `posix_write` / `posix_close`[^bus] |
+| Lifecycle / I/O | `i2c_open`, `i2c_close`, `i2c_read`, `i2c_write` | `posix_open` (`O_RDWR` constant from ext-posi) + `I2C_SLAVE`; then `posix_read` / `posix_write` / `posix_close`[^bus] |
 | Adapter config | `i2c_set_slave_addr`, `i2c_set_ten_bit`, `i2c_set_pec`, `i2c_set_retries`, `i2c_set_timeout`, `i2c_get_funcs` | `ioctl` with `I2COpCode`[^bus][^readme] |
-| Combined xfer | `i2c_rdwr` | Pack `i2c_msg` / `i2c_rdwr_ioctl_data` via `posi_mem_*` + `I2C_RDWR` ioctl[^bus] |
+| Combined xfer | `i2c_rdwr` | Pack `i2c_msg` / `i2c_rdwr_ioctl_data` via `posi_mem_*` + `I2C_RDWR` ioctl; `false` only when the ioctl fails (`posi_mem_*` always exist)[^bus] |
 | SMBus convenience | `i2c_smbus_*` | Emulated with `posix_read` / `posix_write` — **not** `I2C_SMBUS` ioctl[^readme][^bus] |
 
 # Handle object

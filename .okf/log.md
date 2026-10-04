@@ -1,3 +1,6 @@
+## 2026-10-03
+* **Update**: ported to 0.10.0 on `ext-posi` ^0.10.0 (C rewrite; global functions, no `Posi\*` classes). `microscrap/posix` dropped; `Bus::i2cOpen` opens with the extension's `O_RDWR` constant; `i2c_rdwr` no longer checks `function_exists('posi_mem_alloc')` and returns `false` only when the ioctl fails. Docs URLs now `0.10.x`; suggest `scrapyard-io/framework` ^0.10.0.
+
 ## 2026-09-24
 * **Update**: relabeled 0.8.0 → 0.9.0 with `ext-posi` / `microscrap/posix` ^0.9.0. No code change.
 
@@ -9,7 +12,7 @@
 ## 2026-08-10
 
 * **Creation**: Initial OKF v0.2 bundle for `microscrap/i2c` **0.7.0** (gpio microscrap stack promotion) from package sources + `okf/SPEC.md` (GoogleCloudPlatform/knowledge-catalog), format-matched to sibling `microscrap/posix`.
-* **Creation**: Orientation — [Package (0.7)](/orientation/package.md), [Ecosystem docs](/orientation/ecosystem-docs.md), [Pair with protocol peers](/orientation/pairing-protocol-peers.md).
+* **Creation**: Orientation — [Package (0.10)](/orientation/package.md), [Ecosystem docs](/orientation/ecosystem-docs.md), [Pair with protocol peers](/orientation/pairing-protocol-peers.md).
 * **Creation**: Architecture — [Helpers → Bus → posix/posi](/architecture/helpers-bus-posix.md).
 * **Creation**: Conventions — [1:1 extension wrap](/conventions/one-to-one-extension-wrap.md), [Enums for kernel constants](/conventions/enums-kernel-constants.md).
 * **Creation**: Traps — [SMBus helpers ≠ I2C_SMBUS ioctl](/traps/smbus-helpers-not-ioctl.md), [`I2CBus::$addr` stale after set_slave](/traps/i2cbus-addr-stale.md), [Need i2c group /dev permissions](/traps/need-i2c-group-permissions.md), [`function_exists` load order](/traps/function-exists-load-order.md).

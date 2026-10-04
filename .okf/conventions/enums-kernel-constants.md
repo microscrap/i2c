@@ -41,7 +41,7 @@ Linux i2c-dev ioctl request numbers, `i2c_msg.flags` bits, `I2C_FUNCS` capabilit
 - No class-level constants in `src/` — prefer enums.[^agents]
 - Pass `->value` (or a raw `int`) into helpers / `ioctl`; helpers take integers (or the typed `SMBusReadWrite` where the signature requires it).[^readme]
 
-# Enum inventory (0.7.0)
+# Enum inventory
 
 | Enum | Purpose | Cases (summary) |
 |------|---------|-----------------|

@@ -4,17 +4,17 @@
 
 ## Role
 
-Bindings-only Composer package over **ext-posi** + **microscrap/posix**. Global `i2c_*` helpers + `Bus` facade + enums + `I2CBus`. No ServiceProvider, no Chassis/Core coupling.
+Bindings-only Composer package over **ext-posi** (`^0.10.0`, the only requirement). Global `i2c_*` helpers + `Bus` facade + enums + `I2CBus`. No ServiceProvider, no Chassis/Core coupling.
 
 ## Rules
 
 * Helpers call `Microscrap\Bindings\I2C\Bus` only — do not invent parallel APIs.
-* `Bus` uses `posix_open` / `posix_read` / `posix_write` / `posix_close` / `ioctl` / `posi_mem_*` only — no Fabricate remaps.
+* `Bus` calls ext-posi functions only (`posix_open` / `posix_read` / `posix_write` / `posix_close` / `ioctl` / `posi_mem_*`) and the `O_RDWR` constant — no `Posi\*` classes, no Fabricate remaps — no Fabricate remaps.
 * Keep helper ↔ `Bus` coverage aligned with README tables; document drift in README / ecosystem docs.
 * Enums in `src/Enums/*` are int-backed with **FULLY UPPERCASE** cases.
 * Prefer `is_null($var)` over `$var === null`.
 * No class-level constants; no ServiceProviders in this package.
-* SMBus helpers are emulated over posix read/write — they do **not** issue `I2C_SMBUS` ioctl.
+* SMBus helpers are emulated over `posix_read` / `posix_write` — they do **not** issue `I2C_SMBUS` ioctl.
 
 ## Quick OKF map
 

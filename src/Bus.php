@@ -6,13 +6,12 @@ use Microscrap\Bindings\I2C\DataObjects\I2CBus;
 use Microscrap\Bindings\I2C\Enums\I2CMsgFlag;
 use Microscrap\Bindings\I2C\Enums\I2COpCode;
 use Microscrap\Bindings\I2C\Enums\SMBusReadWrite;
-use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
 
 class Bus
 {
     public static function i2cOpen(string $path, int $addr = 0x00): ?I2CBus
     {
-        $fd = posix_open($path, FileControlFlag::O_RDWR->value);
+        $fd = posix_open($path, O_RDWR);
         if ($fd < 0) {
             return null;
         }
@@ -171,7 +170,7 @@ class Bus
      *   'len'   => int          Number of bytes to read (read messages only)
      *
      * Returns the concatenated bytes from all read messages, '' if there are
-     * none, or false if the ioctl fails or ext-posi is unavailable.
+     * none, or false if the ioctl fails.
      *
      * Struct layouts (64-bit Linux):
      *   i2c_msg             16 bytes: addr(v) flags(v) len(v) pad(xx) buf(Q)
@@ -183,10 +182,6 @@ class Bus
 
         if ($n === 0) {
             return '';
-        }
-
-        if (! function_exists('posi_mem_alloc')) {
-            return false;
         }
 
         // Allocate the contiguous i2c_msg array (16 bytes × n).

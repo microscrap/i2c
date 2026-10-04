@@ -1,15 +1,15 @@
 ---
 type: Orientation
 title: Pair with protocol peers
-description: "posix below; uart / gpio / spi siblings; ftdi/mpsse beside for USB; gpio-framework above."
+description: "ext-posi below; uart / gpio / spi siblings; ftdi/mpsse beside for USB; gpio-framework above."
 resource: .
-tags: [orientation, gpio, uart, i2c, spi, ftdi, posix, composition]
+tags: [orientation, gpio, uart, i2c, spi, ftdi, posi, composition]
 generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T22:04:00Z" }
 status: draft
 sources:
   - id: readme
     resource: README.md
-    title: Bindings role and posix / ext-posi requirements
+    title: Bindings role and ext-posi requirement
   - id: agents
     resource: AGENTS.md
     title: Bindings-only role; no Chassis
@@ -27,18 +27,17 @@ sources:
 
 | Concern | Package |
 |---------|---------|
-| POSIX FD / syscall helpers | `microscrap/posix` `^0.7` (**below** — this package depends on it)[^readme][^bus] |
-| Native FFI / memory | `ext-posi` `^0.7` (**below**)[^readme] |
+| POSIX FD / syscall / memory functions | `ext-posi` `^0.10.0` (**below** — the only requirement)[^readme][^bus] |
 | I²C / SMBus device API | `microscrap/i2c` (this package) |
-| UART | `microscrap/uart` `^0.7` (sibling) |
-| GPIO | `microscrap/gpio` `^0.7` (sibling) |
-| SPI | `microscrap/spi` `^0.7` (sibling) |
+| UART | `microscrap/uart` `^0.10` (sibling) |
+| GPIO | `microscrap/gpio` `^0.10` (sibling) |
+| SPI | `microscrap/spi` `^0.10` (sibling) |
 | USB MPSSE / FTDI | `microscrap/ftdi` / `microscrap/mpsse` (sit **beside** — USB path, not an i2c child) |
-| Higher GPIO orchestration | `scrapyard-io/gpio-framework` `^0.7` (**above** the microscrap protocol packages) |
+| Higher GPIO orchestration | `scrapyard-io/framework` `^0.10.0` (**above** the microscrap protocol packages) |
 
 # Typical flow
 
-1. Depend on this package (pulls **microscrap/posix** + requires **ext-posi** `^0.7.0`).
+1. Depend on this package (requires **ext-posi** `^0.10.0`).
 2. Ensure `/dev/i2c-N` exists (`modprobe i2c-dev`) and the process can open it (see [Need i2c group /dev permissions](../traps/need-i2c-group-permissions.md)).
 3. Call `i2c_open` / helpers (or `Bus::*`) — do not invent framework providers inside this package.[^agents]
 4. Application / `gpio-framework` composes this peer with uart / gpio / spi as needed.
@@ -50,9 +49,9 @@ sources:
 
 # Related
 
-* [Package (0.7)](package.md)
+* [Package (0.10)](package.md)
 * [Helpers → Bus → posix/posi](../architecture/helpers-bus-posix.md)
 
-[^readme]: Bindings role and posix / ext-posi requirements
+[^readme]: Bindings role and ext-posi requirement
 [^agents]: Bindings-only role; no Chassis
 [^bus]: Bus uses posix_open / ioctl / posi_mem_*
