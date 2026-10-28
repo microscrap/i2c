@@ -1,9 +1,9 @@
 ---
 type: Orientation
-title: Package (0.10)
-description: "microscrap/i2c 0.10.0 — Linux i2c-dev / SMBus-style PHP helpers over Bus + ext-posi; no ServiceProvider."
+title: Package (0.11)
+description: "microscrap/i2c 0.11.0 — Linux i2c-dev / SMBus-style PHP helpers over Bus + ext-posi; no ServiceProvider."
 resource: .
-tags: [orientation, i2c, smbus, microscrap, bindings, 0.10]
+tags: [orientation, i2c, smbus, microscrap, bindings, 0.11]
 generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T22:04:00Z" }
 status: draft
 sources:
@@ -12,7 +12,7 @@ sources:
     title: Package name, namespace, autoload helpers
   - id: readme
     resource: README.md
-    title: Package README (0.10.x requirements and surface)
+    title: Package README (0.11.x requirements and surface)
   - id: helpers-bus
     resource: src/Helpers/i2c-bus.php
     title: Bus lifecycle / ioctl helper autoload file
@@ -29,16 +29,16 @@ sources:
 
 # What it is
 
-Composer package `microscrap/i2c` at **0.10.0** — PHP helpers, enums, and data objects over [**php-io-extensions/posi**](https://github.com/php-io-extensions/posi) (`ext-posi`). Mirrors the Linux i2c-dev / `<linux/i2c-dev.h>` userspace surface (i2c-tools family).[^readme][^composer]
+Composer package `microscrap/i2c` at **0.11.0** — PHP helpers, enums, and data objects over [**php-io-extensions/posi**](https://github.com/php-io-extensions/posi) (`ext-posi`). Mirrors the Linux i2c-dev / `<linux/i2c-dev.h>` userspace surface (i2c-tools family).[^readme][^composer]
 
 | Field | Value |
 |-------|-------|
 | Name | `microscrap/i2c`[^composer] |
-| Version | `0.10.0`[^composer] |
-| PHP | `^8.4\|^8.5\|^8.6`[^composer] |
+| Version | `0.11.0`[^composer] |
+| PHP | `~8.4.27\|\|^8.5.12`[^composer] |
 | Namespace | `Microscrap\Bindings\I2C\` → `src/`[^composer] |
-| Require | `php`, `ext-posi` `^0.10.0`[^composer] |
-| Suggest | `scrapyard-io/framework` `^0.10.0`[^composer] |
+| Require | `php`, `ext-posi` `^0.11.0`[^composer] |
+| Suggest | `scrapyard-io/framework` `^0.11.0`[^composer] |
 | Homepage | Ecosystem docs overview (see [Ecosystem docs](ecosystem-docs.md))[^readme] |
 | Discovery | **None** — no provider / Chassis registration in this package[^agents] |
 | Role | Bindings layer only (global helpers + `Bus` facade + enums + `I2CBus`)[^agents][^readme] |
@@ -71,10 +71,10 @@ Autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php` (each helper
 | Enums | [Enums for kernel constants](../conventions/enums-kernel-constants.md) |
 | Protocol peers | [Pair with protocol peers](pairing-protocol-peers.md) |
 | Docs site | [Ecosystem docs](ecosystem-docs.md) |
-| Extension | `php-io-extensions/posi` 0.10 (functions and constants; no `Posi\System` / `Termios` / `Memory` classes) |
+| Extension | `php-io-extensions/posi` 0.11 (functions and constants; no `Posi\System` / `Termios` / `Memory` classes) |
 
 [^composer]: Package name, namespace, autoload helpers
-[^readme]: Package README (0.10.x requirements and surface)
+[^readme]: Package README (0.11.x requirements and surface)
 [^helpers-bus]: Bus lifecycle / ioctl helper autoload file
 [^helpers-smbus]: SMBus convenience helper autoload file
 [^agents]: Agent rules for this package

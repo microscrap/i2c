@@ -1,3 +1,7 @@
+## 2026-10-28
+
+* **Version**: 0.11.0 with the Venusian 0.11 ecosystem: `version` 0.11.0, `dev-main` → `0.11.x-dev`, `ext-posi` `^0.11.0`, PHP `~8.4.27||^8.5.12`, docs URLs `0.11.x`, `scrapyard-io/framework` `^0.11.0`. README, AGENTS and the bundle relabelled; CI installs `posi` `^0.11` where it has a workflow. No API change. 5 passed on Homebrew PHP 8.4 NTS and ZTS and on the Pi (8.4 ZTS).
+
 ## 2026-10-03
 * **Update**: ported to 0.10.0 on `ext-posi` ^0.10.0 (C rewrite; global functions, no `Posi\*` classes). `microscrap/posix` dropped; `Bus::i2cOpen` opens with the extension's `O_RDWR` constant; `i2c_rdwr` no longer checks `function_exists('posi_mem_alloc')` and returns `false` only when the ioctl fails. Docs URLs now `0.10.x`; suggest `scrapyard-io/framework` ^0.10.0.
 

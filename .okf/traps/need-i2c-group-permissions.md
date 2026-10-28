@@ -36,7 +36,7 @@ Linux exposes adapters as `/dev/i2c-N` via `i2c-dev`. Opening that node requires
 
 # Related
 
-* [Package (0.10)](../orientation/package.md)
+* [Package (0.11)](../orientation/package.md)
 * [Helpers → Bus → posix/posi](../architecture/helpers-bus-posix.md)
 
 [^readme]: README requirements and i2c group note

@@ -4,7 +4,7 @@
 
 ## Role
 
-Bindings-only Composer package over **ext-posi** (`^0.10.0`, the only requirement). Global `i2c_*` helpers + `Bus` facade + enums + `I2CBus`. No ServiceProvider, no Chassis/Core coupling.
+Bindings-only Composer package over **ext-posi** (`^0.11.0`, the only requirement). Global `i2c_*` helpers + `Bus` facade + enums + `I2CBus`. No ServiceProvider, no Chassis/Core coupling.
 
 ## Rules
 

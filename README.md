@@ -1,18 +1,18 @@
 # microscrap/i2c — Linux I²C / SMBus bindings for ScrapyardIO
 
-> **Docs (production):** [ScrapyardIO · microscrap/i2c 0.10.x](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.10.x/overview)
+> **Docs (production):** [ScrapyardIO · microscrap/i2c 0.11.x](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.11.x/overview)
 
-[![Docs](https://img.shields.io/badge/docs-ScrapyardIO-0ea5e9?logo=readthedocs&logoColor=white)](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.10.x/overview)
+[![Docs](https://img.shields.io/badge/docs-ScrapyardIO-0ea5e9?logo=readthedocs&logoColor=white)](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.11.x/overview)
 [![Packagist Version](https://img.shields.io/packagist/v/microscrap/i2c.svg?label=packagist)](https://packagist.org/packages/microscrap/i2c)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/i2c.svg)](https://packagist.org/packages/microscrap/i2c)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.10-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
+[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.11-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
 
 PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`) with global helpers, enums, and data objects. Every helper delegates to a facade class under `Microscrap\Bindings\I2C`.
 
 This project provides PHP bindings to the Linux i2c-dev character device API, mirroring the public surface of the userspace [`i2c-tools`](https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/) / `<linux/i2c-dev.h>` family.
 
-This is the **bindings** package — not the native extension. Ecosystem docs: [`0.10.x`](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.10.x/overview).
+This is the **bindings** package — not the native extension. Ecosystem docs: [`0.11.x`](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/i2c/0.11.x/overview).
 
 ## Highlights
 
@@ -26,9 +26,9 @@ This is the **bindings** package — not the native extension. Ecosystem docs: [
 
 ## Requirements
 
-* PHP `^8.4|^8.5|^8.6`
+* PHP `~8.4.27||^8.5.12`
 * Linux kernel with `i2c-dev` (`modprobe i2c-dev`) and a populated `/dev/i2c-N` device
-* **ext-posi** `^0.10.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi). It provides the `posix_*` / `ioctl` / `posi_mem_*` functions and the `O_*` constants this package calls; nothing else is required.
+* **ext-posi** `^0.11.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi). It provides the `posix_*` / `ioctl` / `posi_mem_*` functions and the `O_*` constants this package calls; nothing else is required.
 
 ## Installation
 
@@ -46,7 +46,7 @@ i2cdetect -y 1
 ```
 
 ```bash
-composer require microscrap/i2c:^0.10.0
+composer require microscrap/i2c:^0.11.0
 ```
 
 Autoloads `src/Helpers/i2c-bus.php` and `src/Helpers/i2c-smbus.php`, registering the global `i2c_*` functions.

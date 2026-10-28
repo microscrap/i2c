@@ -39,7 +39,7 @@ After `i2c_set_slave_addr` or `i2c_set_slave_addr_force`, sequential `i2c_read` 
 # Related
 
 * [Helpers → Bus → posix/posi](../architecture/helpers-bus-posix.md)
-* [Package (0.10)](../orientation/package.md)
+* [Package (0.11)](../orientation/package.md)
 
 [^readme]: README I2CBus $addr note
 [^dto]: final readonly I2CBus
